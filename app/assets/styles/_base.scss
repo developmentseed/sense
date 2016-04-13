@@ -1,0 +1,282 @@
+/* ==========================================================================
+   Base
+   ========================================================================== */
+
+html {
+  box-sizing: border-box;
+  font-size: 16px;
+}
+
+*, *:before, *:after, input[type="search"] {
+  box-sizing: inherit;
+}
+
+html, body {
+  height: 100%;
+}
+
+body {
+  background: #fff;
+  color: $base-font-color;
+  font-size: 1rem;
+  line-height: 1.5;
+  font-family: $base-font-family;
+  font-weight: $base-font-weight;
+  font-style: $base-font-style;
+  min-width: $row-min-width;
+}
+
+
+/* Links
+   ========================================================================== */
+
+a {
+  cursor: pointer;
+  color: $link-color;
+  text-decoration: none;
+  transition: opacity 0.24s ease 0s;
+}
+
+a:visited {
+  color: $link-color;
+}
+
+a:hover {
+  opacity: 0.64;
+  outline: none;
+}
+
+a:active {
+  outline: none;
+  transform: translate(0, 1px);
+}
+
+
+/* Rows
+   ========================================================================== */
+
+.row {
+  @extend .clearfix;
+  padding-left: $global-spacing;
+  padding-right: $global-spacing;
+  @include media(small-up) {
+    padding-left: $global-spacing * 2;
+    padding-right: $global-spacing * 2;
+  }
+  @include media(xlarge-up) {
+    padding-left: $global-spacing * 4;
+    padding-right: $global-spacing * 4;
+  }
+}
+
+.row--centered {
+  max-width: $row-max-width;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+
+/* ==========================================================================
+   Structure
+   ========================================================================== */
+
+
+/* Header
+   ========================================================================== */
+
+.site-header {
+  position: absolute;
+  width: 100%;
+  z-index: 1000;
+  background-color: #fff;
+  color: $base-color;
+  padding: $global-spacing 0;
+  box-shadow: inset 0 -1px 0 0 rgba($base-color, 0.12);
+  > .inner {
+    // @extend .row, .row--centered;
+    padding: 0 2rem;
+  }
+  @include media(medium-up) {
+    padding: ($global-spacing * 2) 0;
+  }
+}
+
+/* Headline */
+.page__header {
+  padding-top: 5rem;
+  @include media(medium-up) {
+    padding-top: 8rem;
+  }
+}
+
+.page__title {
+  @extend .visually-hidden;
+}
+
+.site-headline {
+  @include col(12/12);
+  @include media(medium-up) {
+    @include col(6/12);
+  }
+}
+
+.site-title {
+  float: left;
+  margin: 0;
+  line-height: 1;
+  font-size: 1.25rem;
+  text-transform: uppercase;
+
+  @include media(medium-up) {
+    font-size: 1.75rem;
+  }
+
+  a {
+    display: block;
+  }
+  * {
+    vertical-align: top;
+    display: inline-block;
+  }
+  img {
+    width: auto;
+    height: 1rem;
+  }
+  span {
+    @extend .visually-hidden;
+  }
+}
+
+/* Body
+   ========================================================================== */
+
+.page__content {
+  > .inner {
+    // @extend .row, .row--centered;
+    padding: 0 2rem;
+  }
+}
+
+.card {
+  background: #fff;
+  box-shadow: 0 4px 0 0 rgba($base-color, 0.08), 0 0 0 1px $base-alpha-color;
+  border-radius: $global-radius;
+  position: relative;
+  overflow: hidden;
+  margin-bottom: 2rem;
+
+  @include media(large-up) {
+    @include col(6/12, $cycle: 2);
+  }
+  @include media(xlarge-up) {
+    @include col(4/12, $cycle: 3, $uncycle: 2);
+  }
+
+  &__header {
+    @extend .antialiased;
+    position: absolute;
+    padding: $global-spacing;
+    color: #fff;
+    top: 0;
+    right: 0;
+    left: 0;
+  }
+
+  &__title {
+    padding-right: 3rem;
+    font-size: 1.375rem;
+    margin-bottom: 0.5rem;
+    text-transform: uppercase;
+  }
+
+  &__loading {
+    padding: 3rem 0;
+    text-align: center;
+    color: #fff;
+    text-transform: uppercase;
+  }
+
+  .infographic {
+    padding: 5rem 1rem 1rem 1rem;
+  }
+
+  .stats {
+    &__label {
+      @extend .visually-hidden;
+    }
+
+    &__value {
+      position: absolute;
+      top: 1rem;
+      right: 1rem;
+      font-size: 1.375rem;
+      font-weight: $base-font-bold;
+    }
+
+    &__date {
+      font-size: 0.875rem;
+      line-height: 1rem;
+      color: rgba(#fff, 0.80);
+      &:before {
+        font-size: 1rem;
+        vertical-align: top;
+        margin-right: 0.5rem;
+        @extend %collecticons-clock;
+      }
+    }
+  }
+
+  .metrics {
+    padding: 1rem;
+
+    &__list  {
+      @extend .clearfix;
+      li {
+        @include col(6/12);
+        text-align: center;
+
+        &:not(:last-child) {
+          box-shadow: 1px 0 0 0 rgba($base-color, 0.16);
+        }
+      }
+
+      strong {
+        font-size: 1.625rem;
+        display: block;
+      }
+    }
+  }
+
+  &.card--temp {
+    .infographic {
+      background: linear-gradient(#FF5722, #E64A19);
+    }
+  }
+
+  &.card--hum {
+    .infographic {
+      background: linear-gradient(#009688, #0097A7);
+    }
+  }
+
+  &.card--uv {
+    .infographic {
+      background: linear-gradient(#7B1FA2, #9C27B0);
+    }
+  }
+
+  &.card--lux {
+    .infographic {
+      background: linear-gradient(#FFA000, #FFC107);
+    }
+  }
+
+  &.card--press {
+    .infographic {
+      background: linear-gradient(#616161, #607D8B);
+    }
+  }
+}
+
+/* Footer
+   ========================================================================== */

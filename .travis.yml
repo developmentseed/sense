@@ -1,0 +1,39 @@
+language: node_js
+node_js:
+  - "4.2"
+
+env:
+  global:
+  - CXX=g++-4.8
+  - GH_REF=github.com/developmentseed/sense.git
+  - DEPLOY_BRANCH=master
+  - secure: "sxDPVseehEH9G/JMuM1E7hsSnGeG4Ju3poWDbp/3Q/Y2Phx/U5IYOQ9e1kggafBi61JOsi8/cySnmiC7c0wP/EHoMnh9gcyAGPdTU4N1UVfZ7xM0eIqm4LQrHBHM0A9ghr3ZhevRIX07LqcNjC0kUR9RX/mlQUvTy/725SzKmQIE/nCWxJwLG5GYRytE/SyX8pzOhuCgIsuBeebpC1Dl91AZmofcym7Lawezvr0ZE1ZcP3wMiZHTCQ8mBIMzd7mSD8rdiZH/QggVPtis5aCSDomOdiKIxxpDM3Mj1J42xtSiEIhRlU9nk3smb9Auioql+BzV5bE8a4oW1D66c320Yb6SAnkSM90a+g0NlS1Z6blNjJ4N8L4QCmVHH4S+AyiXgqccrZiRl/2tsoKE+ZoBFvzIxmOzOQUqGVKX47hQq7QLHFKLCaJIx2XKhHPrfUhi752+5rYFG01teIkOP0usac34qM96dCxOodmC6xUY2YpBWboIwSr3nhQtLBs2fUw23PlgaDdgGpOyv3Pporwnp1Js99UZXtSBDWHcaFxjWnp3gEUdWwMwR69DMOzu6Udm9RMj3WtPm7G5fz9E5pPlVjiBFgsLaUXV3WVNwH/G1zrstl5vFAGyUzI1iJeHTGvncD/HT21uMHNkl6u5VA2+n97W8+J8pvxefQ+Plja7+gM="
+  
+addons:
+  apt:
+    sources:
+      - ubuntu-toolchain-r-test
+    packages:
+      - g++-4.8
+
+cache:
+  apt: true
+  directories:
+    - node_modules
+
+before_install:
+- chmod +x ./.build_scripts/deploy.sh
+- chmod +x ./.build_scripts/lint.sh
+
+before_script:
+- ./.build_scripts/lint.sh
+
+script:
+- npm run build
+
+deploy:
+  provider: script
+  skip_cleanup: true
+  script: .build_scripts/deploy.sh
+  on:
+    branch: ${DEPLOY_BRANCH}

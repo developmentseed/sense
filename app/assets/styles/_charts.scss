@@ -1,0 +1,45 @@
+/* Footer
+   ========================================================================== */
+svg.chart {
+  // Avoids that the chart grows because of the gap left by inline elements.
+  display: block;
+}
+
+.line-chart-wrapper {
+  min-height: 10rem;
+}
+
+.line-chart {
+  .data-line {
+    stroke: #fff;
+    stroke-width: 2px;
+    fill: none;
+  }
+
+  .edge {
+    font-size: 0.75rem;
+    fill: rgba(#fff, 0.8);
+  }
+
+  .days {
+    font-size: 0.75rem;
+    fill: rgba(#fff, 0.8);
+  }
+
+  .x.axis text {
+    font-size: 0.75rem;
+    fill: rgba(#fff, 0.8);
+  }
+
+  .y.axis {
+    .line {
+      stroke: rgba(#fff, 0.8);
+      stroke-dasharray: 4 4;  
+    }
+    .label {
+      @extend .antialiased;
+      fill: rgba(#fff, 0.8);
+      font-size: 0.75rem;
+    }
+  }
+}

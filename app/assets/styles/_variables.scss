@@ -1,0 +1,70 @@
+/* ==========================================================================
+   Colors
+   ========================================================================== */
+$base-color: #2c3e50;                   // Midnight blue
+$primary-color: #16a085;                // Belize Hole
+$secondary-color: #3498db;              // Purple
+// $tertiary-color: #ffffff;            // Undefined
+
+$danger-color: #ea4f54;                 // Red
+$success-color: $primary-color;         // lime
+$warning-color: #f6d55f;                // Yellow
+$info-color: #008CBA;                   // Blue
+
+$link-color: $primary-color;
+$base-alpha-color: rgba($base-color, 0.12);
+
+
+/* ==========================================================================
+   Typography
+   ========================================================================== */
+
+/**
+ * $base-* refers to the base styles when there's nothing else to override them.
+ */
+$base-font-color: $base-color;
+$base-font-family: "Exo 2", "Helvetica Neue", Helvetica, Arial, sans-serif;
+$base-font-style: normal;
+$base-font-light: 300;
+$base-font-regular: 400;
+$base-font-bold: 700;
+$base-font-weight: $base-font-regular;
+
+$code-font-family: Menlo, Monaco, Consolas, "Courier New", monospace;
+
+
+/* ==========================================================================
+   Decoration
+   ========================================================================== */
+
+/* Border radius */
+
+$global-radius: 0.25rem;
+$semi-radius: $global-radius/2;
+$global-rounded: 60rem;
+
+
+/* ==========================================================================
+   Spacing and media queries
+   ========================================================================== */
+
+/* Rows */
+
+$row-min-width: 320px;
+$row-max-width: 1280px;
+$jeet-max-width: $row-max-width; // reset jeet.gs max width
+
+/* Media queries */
+
+$xsmall-range: (0, 543px);
+$small-range: (544px, 767px);
+$medium-range: (768px, 991px);
+$large-range: (992px, 1199px);
+$xlarge-range: (1200px);
+
+$screen: "only screen";
+
+/* Spacing */
+
+$global-spacing: 1rem;
+$section-spacing: 4rem;
