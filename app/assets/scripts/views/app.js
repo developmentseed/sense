@@ -25,6 +25,9 @@ var App = React.createClass({
         <main className='site-body' role='main'>
           {this.props.children}
         </main>
+        <footer className='site-footer' role='footer'>
+          <p>Made with love by <a href='https://developmentseed.org' title='Visit Development Seed website'>Development Seed</a> using <a href='http://opensensemap.org' title='Visit OpenSenseMap website'>OpenSenseMap</a> data</p> 
+        </footer>
       </div>
     );
   }
