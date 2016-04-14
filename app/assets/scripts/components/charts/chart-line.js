@@ -294,8 +294,21 @@ var Chart = function (options) {
         .attr('height', _height);
 
       $svg.select('#clip rect')
+        // Since this is going to be applied inside the dataCanvas
+        // we have to compensate for the translate.
+        .attr('x', -margin.left)
+        .attr('y', -margin.top)
+        // Add some top and bottom space to avoid clipping the path.
         .attr('width', _width + margin.left)
-        .attr('height', _height);
+        .attr('height', _height + margin.top + margin.bottom);
+
+      // DEBUG:
+      // To view the area taken by the #clip rect.
+      // $dataCanvas.select('.data-canvas-shadow')
+      //   .attr('x', -margin.left)
+      //   .attr('y', -margin.top)
+      //   .attr('width', _width + margin.left)
+      //   .attr('height', _height + margin.top + margin.bottom);
 
       // Update scale ranges.
       x.range([0, _width]);
@@ -353,9 +366,14 @@ var Chart = function (options) {
     $svg.append('defs')
       .append('clipPath')
       .attr('id', 'clip')
-      .append('rect')
-      .attr('x', -margin.left) // Compensate for the dataCanvas translate.
-      .attr('y', 0);
+      .append('rect');
+
+    // DEBUG:
+    // To view the area taken by the #clip rect.
+    // $dataCanvas.append('rect')
+    //   .attr('class', 'data-canvas-shadow')
+    //   .style('fill', '#000')
+    //   .style('opacity', 0.16);
 
     $svg
       .attr('cursor', 'move')
